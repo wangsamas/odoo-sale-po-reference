@@ -1,0 +1,33 @@
+<odoo>
+
+    <template id="sale_order_ref" inherit_id="sale.report_saleorder_document">     
+        <xpath expr="//div[@t-if='doc.client_order_ref']" position="after">
+            <div name="PO reference" class="col-xs-2" t-if="doc.po_ref">
+                <strong>PO Reference:</strong>
+                <p t-field="doc.po_ref"/>
+            </div>
+        </xpath>        
+    </template>
+        
+    <template id="invoice_ref" inherit_id="account.report_invoice_document">     
+        <xpath expr="//div[@t-if='o.reference']" position="after">
+            <div name="PO reference" class="col-xs-2" t-if="o.po_ref">
+                <strong>PO Reference:</strong>
+                <p t-field="o.po_ref"/>
+            </div>
+        </xpath>        
+    </template>
+
+    <template id="delivery_ref" inherit_id="stock.report_delivery_document">
+        <xpath expr="//th[@t-if='o.origin']" position="after">
+            <th t-if="o.po_ref"><strong>PO Reference</strong></th>
+        </xpath>        
+        <xpath expr="//td[@t-if='o.origin']" position="after">
+            <td t-if="o.po_ref">
+                <span t-field="o.po_ref"/>
+            </td>
+        </xpath>        
+    </template>
+    
+    
+</odoo>
